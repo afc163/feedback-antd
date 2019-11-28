@@ -10,7 +10,15 @@ moment.locale('zh-cn');
 
 // <ConfigProvider locale={zhCN} getPopupContainer={node => node.parentElement}>
 ReactDOM.render(
-  <ConfigProvider locale={zhCN} getPopupContainer={node => node}>
+  <ConfigProvider
+    locale={zhCN}
+    getPopupContainer={node => {
+      if (node) {
+        return node.parentNode;
+      }
+      return document.body;
+    }}
+  >
     <Root />
   </ConfigProvider>,
   document.getElementById('root')
